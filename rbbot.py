@@ -1,140 +1,139 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import sys
+import rbbot
+from pprint import pprint
+import datetime
 import signal
-import socket
-import ssl
-import oauth2 as oauth
 import time
-import json
-import insults
-from random import randint
 
-class RBbot(object):
-        def __init__(self,server,port):
-                self.server = server
-                self.port = port
-                self.irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                self.irc.connect((server,port))
-                self.ircsock = ssl.wrap_socket(self.irc)
+### IRC INFO
+server = "irc.freenode.net"
+port = 6697
+bot = rbbot.RBbot(server,port)
+channel="#crude"
+channel2="#reddit-sysadmin"
+#channel="##dkdelidj"
+botnick="rebeccablack"
+password="beckyyyyspass"
 
-        def set_nick(self,nick,pwd):
-                self.nick = nick
-                self.pwd = pwd
-                self.ircsock.send("USER "+self.nick+" "+self.nick+" "+self.nick+" :Yourmother\n")
-                self.ircsock.send("NICK "+self.nick+"\n")
-                self.ircsock.send("PRIVMSG NICKSERV :IDENTIFY " + self.nick + " " + self.pwd +"\n")
+### TWEET INFO
+urljs = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=officialjaden&count=200&include_rts=false"
+urlrb = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=MsRebeccaBlack&count=100&include_rts=false"
+urlrb1 = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=MsRebeccaBlack&count=1&include_rts=false"
+key = 'key'
+secret = 'sekrit'
+ytkey = "yourytkey"
+urlyt = "https://www.googleapis.com/youtube/v3/search?safeSearch=none&part=snippet&type=video&maxResults=1&key="+ytkey+"&q="
 
-        def join(self,chan):
-                self.chan = chan
-                self.ircsock.send("JOIN "+self.chan+"\n")
-                self.connected = True
+### SET NICK AND JOIN CHANNEL
+bot.set_nick(botnick,password)
+bot.join(channel)
+#bot.join(channel2)
 
-        def getNames(self,chan):
-                self.chan = chan
-                self.ircsock.send("NAMES "+self.chan+"\n")
+### GET THE TWEET
+tweetObject = rbbot.Tweets()
+tweetrb = tweetObject.getTweet(urlrb,key,secret)
+tweetrb1 = tweetObject.getTweet(urlrb1,key,secret)
+tweetjs = tweetObject.getTweet(urljs,key,secret)
 
-        def exitGracefully(self,signal,frame):
-                self.ircsock.send("PART "+self.chan+" :west coast nigga\r\n")
-                sys.exit(0)
 
-        def chunks(self,l,n):
-                self.l = l
-                self.n = n
-                for i in xrange(0,len(self.l),self.n):
-                        yield self.l[i:i+self.n]
+### RATE LIMITING
+rate = 1.0
+per = 5.0
+allowance = rate;
+last_check=time.time()
+tweet_check = time.time()
+apiObject = rbbot.apis()
 
-        def messg(self,content,mode):
-                self.mode = mode
-                self.content = content
-                self.insult = insults.Insults()
+def cunt(text):
+        t = text.split()
+        t1=t[0]
+        to = t1[1:t1.index('!')].strip()
+        return to
 
-                if self.mode == "t":
-                        if len(self.content) == 1:
-                                self.ircsock.send("PRIVMSG "+self.chan+" :"+self.content[0]["text"].encode('utf8')+"\r\n")
+
+### START
+while bot.connected == True:
+        signal.signal(signal.SIGINT, bot.exitGracefully)
+        current = time.time()
+        time_passed = current - tweet_check
+        time_passedS = current - last_check
+        if (time_passed > 14400):
+                tweet_check = current
+                tweetrb = tweetObject.getTweet(urlrb,key,secret)
+                tweetjs = tweetObject.getTweet(urljs,key,secret)
+
+        text=bot.ircsock.recv(2048)
+        print (text)
+        if text.find(" crudeiasdas") != -1:
+                bot.getNames(channel)
+        elif text.find("!jaden") != -1 or text.find("JADEN") != -1:
+                True
+        elif text.find("jaden") != -1 or text.find("JADEN") != -1:
+                try:
+                        if cunt(text).lower() != "shoh":
+                                #bot.messg(tweetjs,"t")
+                                gif = apiObject.getAPI("sad")
+                                bot.messg(gif,"a")
+                except ValueError:
+                        print("value error on cunt")
+        if text.find("tell me more becky") != -1:
+                if cunt(text).lower() != "shoh":
+                        bot.messg(tweetrb,"t")
+        if text.find("rebecca tell me stuff") != -1:
+                if cunt(text).lower() != "shoh":
+                        bot.messg(tweetrb1,"t")
+
+        if text.find("IS IT FRIDAY") != -1:
+                last_check=current
+                allowance += time_passedS * (rate / per)
+                if (allowance > rate):
+                        allowance = rate;
+                if (allowance < 1.0):
+                        print "allowance under 1"
+                else:
+                        cunts = cunt(text).lower()
+                        if cunts != "shoh" or cunts != "dong" or cunts != "dongerdong":
+                                bot.messg(datetime.datetime.now(),"YT")
+                        allowance -= 1.0
+
+        if text.find(":.yt ") != -1 or text.find(":.YT ") != -1:
+                last_check=current
+                allowance += time_passedS * (rate / per)
+                if (allowance > rate):
+                        allowance = rate;
+                if (allowance < 1.0):
+                        print "allowance under 1"
+                else:
+                        cunts = cunt(text).lower()
+                        if cunts == "shoh" or cunts == "dong" or cunts == "dongerdong" or cunts == "rebeccablack":
+                                bot.messg("yer a cunt harry","g")
                         else:
-                                ranum = randint(1,len(self.content)-1)
-                                self.ircsock.send("PRIVMSG "+self.chan+" :"+self.content[ranum]["text"].encode('utf8')+"\r\n")
-                elif self.mode == 'p':
-                        self.ircsock.send( 'PONG ' + self.content + '\r\n' )
-                elif self.mode == 'c':
-                        self.ircsock.send("PRIVMSG "+self.chan+" :"+ self.content + " is a " + self.insult.adjective() + " " + self.insult.nouns() +"\r\n")
-                elif self.mode == 'g':
-                        self.ircsock.send("PRIVMSG "+chan+" :"+self.content+"\r\n")
-                elif self.mode == 'yt':
-                        if self.content.isoweekday() == 5:
-                                self.friday()
+                                line = text[text.index(":.yt"):].split()
+                                searchterm = []
+                                searchterm = "+".join(line[1:]).strip()
+                                if searchterm:
+                                        urlytube = urlyt+searchterm
+                                        result = apiObject.getYT(urlytube)
+                                        tellthecunts = result["items"][0]["snippet"]["title"]+" by "+result["items"][0]["snippet"]["channelTitle"]+" -> https://www.youtube.com/watch?v="+result["items"][0]["id"]["videoId"]
+                                        bot.messg(tellthecunts,"g")
+                                allowance -= 1.0
+
+        if text.find("is it friday") != -1:
+                last_check=current
+                allowance += time_passedS * (rate / per)
+                if (allowance > rate):
+                        allowance = rate;
+                if (allowance < 1.0):
+                        print "allowance under 1"
+                else:
+                        cunts = cunt(text).lower()
+                        if cunts == "shoh" or cunts == "dong" or cunts == "dongerdong":
+                                bot.messg("yer a cunt harry","g")
                         else:
-                                todayy = self.content.isoweekday()
-                                hour = self.content.hour
-                                weekStr = "MON|TUE|WED|THU|FRI"
-                                bar = "="*(todayy-1)*4
-                                chnks=list(self.chunks(range(1,25),6))
-                                segments = 4
-                                for y in chnks:
-                                        if hour in y:
-                                                bar = bar + "="*(chnks.index(y)+1)
-                                                bar = bar[:-1]
-                                                bar += "-"
-                                endof = weekStr[len(bar):]
-                                bar = bar+endof
-                                bar="[{b:19}]".format(b=bar)
-                                self.ircsock.send("PRIVMSG "+self.chan+" :you wish it was you " + self.insult.adjective() + " " + self.insult.nouns() +"\r\n")
-                                time.sleep(1)
-                                self.ircsock.send("PRIVMSG "+self.chan+" :consult this graph you cunt:\r\n")
-                                self.ircsock.send("PRIVMSG "+self.chan+" :" + bar+" it aint fucking friday\r\n")
-                elif self.mode == 'YT':
-                        if self.content.isoweekday() == 5:
-                                self.friday()
-                        else:
-                                wkd = self.content.isoweekday()
-                                dh = self.content.hour
-                                b = "="*24*wkd
-                                b = b[:-(24-dh)]
-                                b += "-"
-                                bar="[{b:120}]".format(b=b)
-                                self.ircsock.send("PRIVMSG "+self.chan+" :Not yet friend!\r\n")
-                                time.sleep(1)
-                                self.ircsock.send("PRIVMSG "+self.chan+" :Please enjoy the following graph represented by hourly increments:\r\n")
-                                self.ircsock.send("PRIVMSG "+self.chan+" :" + bar+" Sorry, not friday yet :-)\r\n")
+                                bot.messg(datetime.datetime.now(),"yt")
 
-
-        def friday(self):
-                self.ircsock.send("PRIVMSG "+self.chan+" :hold onTO YOUR HATS TODAY IS \r\n")
-                time.sleep(randint(1,3))
-                self.ircsock.send("PRIVMSG "+self.chan+" :.YT FRIDAY\r\n")
-                self.ircsock.send("PRIVMSG "+self.chan+" :.YT FRIDAY\r\n")
-                self.ircsock.send("PRIVMSG "+self.chan+" :.YT FRIDAY\r\n")
-                time.sleep(randint(1,5))
-                self.ircsock.send("PRIVMSG "+self.chan+" :YTFRIDAYMATHAFAKKAAAAAAAAAA\r\n")
-                time.sleep(1)
-                self.ircsock.send("PRIVMSG "+self.chan+" :the graph dont lie cunt\r\n")
-                self.ircsock.send("PRIVMSG "+self.chan+" :[┌∩┐ ┌∩┐ ┌∩┐┌∩┐ᕦ(ò_óˇ)ᕤ ┌∩┐┌∩┐ᕦ(ò_óˇ)ᕤ ᶠᶸᶜᵏ♥ᵧₒᵤ ╭∩╮]\r\n")
-                time.sleep(1)
-                self.ircsock.send("PRIVMSG "+self.chan+" :┌∩┐\r\n")
-
-
-class Tweets(object):
-        def __init__(self):
-                self.http_method = "GET"
-                self.post_body = ""
-                self.http_headers= None
-
-        def oauth_req(self,url, key, secret):
-                self.url = url
-                self.key = key
-                self.secret = secret
-                self.consumer = oauth.Consumer(key=self.key, secret=self.secret)
-                #token = oauth.Token(key=key, secret=secret)
-                self.client = oauth.Client(self.consumer)
-                self.resp, self.content = self.client.request( self.url, method=self.http_method, body=self.post_body,headers=self.http_headers)
-                return self.content
-
-        def getTweet(self,url,key,secret):
-                self.url = url
-                self.key = key
-                self.secret = secret
-                self.jstweet = self.oauth_req(self.url,self.key,self.secret)
-                self.parsed = json.loads(self.jstweet)
-                return self.parsed
+                        allowance -= 1.0
+        if text.find ( 'PING' ) != -1:
+                bot.messg(text.split()[1],"p")
