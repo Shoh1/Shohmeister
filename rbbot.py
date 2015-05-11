@@ -13,7 +13,6 @@ port = 6697
 bot = rbbot.RBbot(server,port)
 channel="#crude"
 channel2="#reddit-sysadmin"
-#channel="##dkdelidj"
 botnick="rebeccablack"
 password="beckyyyyspass"
 
