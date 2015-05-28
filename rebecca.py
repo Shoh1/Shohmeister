@@ -45,14 +45,7 @@ while bot.connected == True:
         print (text)
         
         if text.find(":.bantz ") != -1 or text.find(":.BANTZ ") != -1:
-                 last_check=current
-                 allowance += time_passedS * (rate / per)
-                 if (allowance > rate):
-                         allowance = rate;
-                 if (allowance < 1.0):
-                         print "allowance under 1"
-                 else:
-                        if cunt(text).lower() == "shoh":
+                if cunt(text).lower() == "shoh":
                                 bot.messg("BANTER","g")
 
         if text.find ( 'PING' ) != -1:
