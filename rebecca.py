@@ -45,7 +45,11 @@ while bot.connected == True:
         print (text)
         
         if text.find(":.bantz") != -1 or text.find(":.BANTZ") != -1:
+                cunts = cunt(text).lower()
+                if cunts != "doctordalek"
                                 bot.messg(cunt(text),"c")
+                else:
+                                bot.messg("Ur a virgin","g")
 
         if text.find ( 'PING' ) != -1:
                 bot.messg(text.split()[1],"p")
