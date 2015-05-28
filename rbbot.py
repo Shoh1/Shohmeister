@@ -46,10 +46,11 @@ class RBbot(object):
                 for i in xrange(0,len(self.l),self.n):
                         yield self.l[i:i+self.n]
 
-        def messg(self,content,mode):
+        def messg(self,content,mode,target):
                 self.mode = mode
                 self.content = content
-                self.insult = insults.Insults()
+                self.bantsult = bantsults.Bantsults()
+                self.target = target
 
                 if self.mode == "t":
                         if len(self.content) == 1:
