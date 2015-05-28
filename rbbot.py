@@ -56,6 +56,6 @@ class RBbot(object):
                 if self.mode == 'c':
                         self.ircsock.send("PRIVMSG "+self.target+" :"+ self.content + " is " + self.bantsult.Bantjective() + "\r\n")
                 elif self.mode == 'p':
-                        self.ircsock.send( 'PONG ' + self.chan+ '\r\n' )
+                        self.ircsock.send( 'PONG ' + self.content+ '\r\n' )
                 elif self.mode == 'g':
                         self.ircsock.send("PRIVMSG "+self.target+" :"+self.content.encode('utf8')+"\r\n")
