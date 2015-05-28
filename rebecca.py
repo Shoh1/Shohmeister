@@ -16,6 +16,13 @@ channel2="#reddit-sysadmin"
 botnick="Shohmeister"
 password=""
 
+### RATE LIMITING
+rate = 1.0
+per = 5.0
+allowance = rate;
+last_check=time.time()
+apiObject = rbbot.apis()
+
 
 ### SET NICK AND JOIN CHANNEL
 bot.set_nick(botnick,password)
@@ -36,6 +43,17 @@ while bot.connected == True:
 
         text=bot.ircsock.recv(2048)
         print (text)
+        
+        if text.find(":.bantz ") != -1 or text.find(":.BANTZ ") != -1:
+                 last_check=current
+                 allowance += time_passedS * (rate / per)
+                 if (allowance > rate):
+                         allowance = rate;
+                 if (allowance < 1.0):
+                         print "allowance under 1"
+                 else:
+                        if cunt(text).lower() == "Shoh":
+                                bot.messg("BANTER","g")
 
         if text.find ( 'PING' ) != -1:
                 bot.messg(text.split()[1],"p")
