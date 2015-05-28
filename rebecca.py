@@ -40,6 +40,8 @@ def cunt(text):
 while bot.connected == True:
         signal.signal(signal.SIGINT, bot.exitGracefully)
         current = time.time()
+        time_passed = current - tweet_check
+        time_passedS = current - last_check
 
         text=bot.ircsock.recv(2048)
         print (text)
