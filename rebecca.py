@@ -38,7 +38,7 @@ def cunt(text):
         
 def chan(text):
         t = text.split()
-        return=t[2]
+        return = t[2]
 
 
 
