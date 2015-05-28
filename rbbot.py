@@ -54,27 +54,27 @@ class RBbot(object):
 
                 if self.mode == "t":
                         if len(self.content) == 1:
-                                self.ircsock.send("PRIVMSG "+self.chan+" :"+self.content[0]["text"].encode('utf8')+"\r\n")
+                                self.ircsock.send("PRIVMSG "+self.target+" :"+self.content[0]["text"].encode('utf8')+"\r\n")
                         elif len(self.content) > 1:
                                 ranum = randint(1,len(self.content)-1)
-                                self.ircsock.send("PRIVMSG "+self.chan+" :"+self.content[ranum]["text"].encode('utf8')+"\r\n")
+                                self.ircsock.send("PRIVMSG "+self.target+" :"+self.content[ranum]["text"].encode('utf8')+"\r\n")
                         #elif self.content["error"]:
-                        #       self.ircsock.send("PRIVMSG "+self.chan+" :"+self.content["error"].encode('utf8')+"\r\n")
+                        #       self.ircsock.send("PRIVMSG "+self.target+" :"+self.content["error"].encode('utf8')+"\r\n")
                 elif self.mode == "a":
                         if len(self.content) == 1:
-                                self.ircsock.send("PRIVMSG "+self.chan+" :"+self.content[0]["file"].encode('utf8')+"\r\n")
+                                self.ircsock.send("PRIVMSG "+self.target+" :"+self.content[0]["file"].encode('utf8')+"\r\n")
                         else:
                                 ranum = randint(1,len(self.content)-1)
-                                self.ircsock.send("PRIVMSG "+self.chan+" :"+self.content[ranum]["file"].encode('utf8')+"\r\n")
+                                self.ircsock.send("PRIVMSG "+self.target+" :"+self.content[ranum]["file"].encode('utf8')+"\r\n")
                 elif self.mode == 'youtube':
-                        self.ircsock.send("PRIVMSG "+self.chan+" :"+self.content["items"]["id"]["videoID"].encode('utf8')+"\r\n")
+                        self.ircsock.send("PRIVMSG "+self.target+" :"+self.content["items"]["id"]["videoID"].encode('utf8')+"\r\n")
 
                 elif self.mode == 'p':
                         self.ircsock.send( 'PONG ' + self.content + '\r\n' )
                 elif self.mode == 'c':
-                        self.ircsock.send("PRIVMSG "+self.chan+" :"+ self.content + " is a " + self.insult.adjective() + " " + self.insult.nouns() +"\r\n")
+                        self.ircsock.send("PRIVMSG "+self.target+" :"+ self.content + " is a " + self.insult.adjective() + " " + self.insult.nouns() +"\r\n")
                 elif self.mode == 'g':
-                        self.ircsock.send("PRIVMSG "+self.chan+" :"+self.content.encode('utf8')+"\r\n")
+                        self.ircsock.send("PRIVMSG "+self.target+" :"+self.content.encode('utf8')+"\r\n")
                 elif self.mode == 'yt':
                         if self.content.isoweekday() == 5:
                                 self.friday()
@@ -93,10 +93,10 @@ class RBbot(object):
                                 endof = weekStr[len(bar):]
                                 bar = bar+endof
                                 bar="[{b:19}]".format(b=bar)
-                                self.ircsock.send("PRIVMSG "+self.chan+" :you wish it was you " + self.insult.adjective() + " " + self.insult.nouns() +"\r\n")
+                                self.ircsock.send("PRIVMSG "+self.target+" :you wish it was you " + self.insult.adjective() + " " + self.insult.nouns() +"\r\n")
                                 time.sleep(1)
-                                self.ircsock.send("PRIVMSG "+self.chan+" :consult this graph you cunt:\r\n")
-                                self.ircsock.send("PRIVMSG "+self.chan+" :" + bar+" it aint fucking friday\r\n")
+                                self.ircsock.send("PRIVMSG "+self.target+" :consult this graph you cunt:\r\n")
+                                self.ircsock.send("PRIVMSG "+self.target+" :" + bar+" it aint fucking friday\r\n")
                 elif self.mode == 'YT':
                         if self.content.isoweekday() == 5:
                                 self.friday()
@@ -107,25 +107,25 @@ class RBbot(object):
                                 b = b[:-(24-dh)]
                                 b += "-"
                                 bar="[{b:120}]".format(b=b)
-                                self.ircsock.send("PRIVMSG "+self.chan+" :Not yet friend!\r\n")
+                                self.ircsock.send("PRIVMSG "+self.target+" :Not yet friend!\r\n")
                                 time.sleep(1)
-                                self.ircsock.send("PRIVMSG "+self.chan+" :Please enjoy the following graph represented by hourly increments:\r\n")
-                                self.ircsock.send("PRIVMSG "+self.chan+" :" + bar+" Sorry, not friday yet :-)\r\n")
+                                self.ircsock.send("PRIVMSG "+self.target+" :Please enjoy the following graph represented by hourly increments:\r\n")
+                                self.ircsock.send("PRIVMSG "+self.target+" :" + bar+" Sorry, not friday yet :-)\r\n")
 
 
         def friday(self):
-                self.ircsock.send("PRIVMSG "+self.chan+" :hold onTO YOUR HATS TODAY IS \r\n")
+                self.ircsock.send("PRIVMSG "+self.target+" :hold onTO YOUR HATS TODAY IS \r\n")
                 time.sleep(randint(1,3))
-                self.ircsock.send("PRIVMSG "+self.chan+" :.yt FIRDAY\r\n")
-                self.ircsock.send("PRIVMSG "+self.chan+" :.YT FRIDAY\r\n")
-                self.ircsock.send("PRIVMSG "+self.chan+" :.YT FRIDAY\r\n")
+                self.ircsock.send("PRIVMSG "+self.target+" :.yt FIRDAY\r\n")
+                self.ircsock.send("PRIVMSG "+self.target+" :.YT FRIDAY\r\n")
+                self.ircsock.send("PRIVMSG "+self.target+" :.YT FRIDAY\r\n")
                 time.sleep(randint(1,5))
-                self.ircsock.send("PRIVMSG "+self.chan+" :YTFRIDAYMATHAFAKKAAAAAAAAAA\r\n")
+                self.ircsock.send("PRIVMSG "+self.target+" :YTFRIDAYMATHAFAKKAAAAAAAAAA\r\n")
                 time.sleep(1)
-                self.ircsock.send("PRIVMSG "+self.chan+" :the graph dont lie cunt\r\n")
-                self.ircsock.send("PRIVMSG "+self.chan+" :[┌∩┐ ┌∩┐ ┌∩┐┌∩┐ᕦ(ò_óˇ)ᕤ ┌∩┐┌∩┐ᕦ(ò_óˇ)ᕤ ᶠᶸᶜᵏ♥ᵧₒᵤ ╭∩╮]\r\n")
+                self.ircsock.send("PRIVMSG "+self.target+" :the graph dont lie cunt\r\n")
+                self.ircsock.send("PRIVMSG "+self.target+" :[┌∩┐ ┌∩┐ ┌∩┐┌∩┐ᕦ(ò_óˇ)ᕤ ┌∩┐┌∩┐ᕦ(ò_óˇ)ᕤ ᶠᶸᶜᵏ♥ᵧₒᵤ ╭∩╮]\r\n")
                 time.sleep(1)
-                self.ircsock.send("PRIVMSG "+self.chan+" :┌∩┐\r\n")
+                self.ircsock.send("PRIVMSG "+self.target+" :┌∩┐\r\n")
 
 
 class Tweets(object):
