@@ -45,8 +45,7 @@ while bot.connected == True:
         print (text)
         
         if text.find(":.bantz") != -1 or text.find(":.BANTZ") != -1:
-                if cunt(text).lower() == "shoh":
-                                bot.messg("BANTER","g")
+                                bot.messg(cunt(text),"c")
 
         if text.find ( 'PING' ) != -1:
                 bot.messg(text.split()[1],"p")
