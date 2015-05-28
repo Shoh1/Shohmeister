@@ -74,15 +74,15 @@ while bot.connected == True:
                         if cunt(text).lower() != "shoh":
                                 #bot.messg(tweetjs,"t")
                                 gif = apiObject.getAPI("sad")
-                                bot.messg(gif,"a")
+                                bot.messg(gif,"a","#crude")
                 except ValueError:
                         print("value error on cunt")
         if text.find("tell me more becky") != -1:
                 if cunt(text).lower() != "shoh":
-                        bot.messg(tweetrb,"t")
+                        bot.messg(tweetrb,"t","#crude")
         if text.find("rebecca tell me stuff") != -1:
                 if cunt(text).lower() != "shoh":
-                        bot.messg(tweetrb1,"t")
+                        bot.messg(tweetrb1,"t","#crude")
 
         if text.find("IS IT FRIDAY") != -1:
                 last_check=current
@@ -94,7 +94,7 @@ while bot.connected == True:
                 else:
                         cunts = cunt(text).lower()
                         if cunts != "shoh" or cunts != "dong" or cunts != "dongerdong":
-                                bot.messg(datetime.datetime.now(),"YT")
+                                bot.messg(datetime.datetime.now(),"YT","#crude")
                         allowance -= 1.0
 
         if text.find(":.yt ") != -1 or text.find(":.YT ") != -1:
@@ -107,7 +107,7 @@ while bot.connected == True:
                 else:
                         cunts = cunt(text).lower()
                         if cunts == "shoh" or cunts == "dong" or cunts == "dongerdong" or cunts == "rebeccablack":
-                                bot.messg("yer a cunt harry","g")
+                                bot.messg("yer a cunt harry","g","#crude")
                         else:
                                 line = text[text.index(":.yt"):].split()
                                 searchterm = []
@@ -116,7 +116,7 @@ while bot.connected == True:
                                         urlytube = urlyt+searchterm
                                         result = apiObject.getYT(urlytube)
                                         tellthecunts = result["items"][0]["snippet"]["title"]+" by "+result["items"][0]["snippet"]["channelTitle"]+" -> https://www.youtube.com/watch?v="+result["items"][0]["id"]["videoId"]
-                                        bot.messg(tellthecunts,"g")
+                                        bot.messg(tellthecunts,"g","#crude")
                                 allowance -= 1.0
 
         if text.find("is it friday") != -1:
@@ -129,10 +129,10 @@ while bot.connected == True:
                 else:
                         cunts = cunt(text).lower()
                         if cunts == "shoh" or cunts == "dong" or cunts == "dongerdong":
-                                bot.messg("yer a cunt harry","g")
+                                bot.messg("yer a cunt harry","g","#crude")
                         else:
-                                bot.messg(datetime.datetime.now(),"yt")
+                                bot.messg(datetime.datetime.now(),"yt","#crude")
 
                         allowance -= 1.0
         if text.find ( 'PING' ) != -1:
-                bot.messg(text.split()[1],"p")
+                bot.messg(text.split()[1],"p","")
