@@ -54,7 +54,8 @@ class RBbot(object):
 
                 if self.mode == 'c':
                         self.ircsock.send("PRIVMSG "+self.chan+" :"+ self.content + " is " + self.bansult.Banjective() + "\r\n")
-
+                elif self.mode == 'p':
+                        self.ircsock.send( 'PONG ' + self.content + '\r\n' )
 
 
 class Tweets(object):
