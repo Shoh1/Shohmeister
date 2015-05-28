@@ -27,4 +27,4 @@ class Bantsults(object):
                         "Robantic" 
                 ]
                 rand = randint(1,len(adj)-1)
-                return adj[rand]
+                return baj[rand]
