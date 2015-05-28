@@ -26,5 +26,5 @@ class Bantsults(object):
                         "Sweat bants",
                         "Robantic" 
                 ]
-                rand = randint(1,len(adj)-1)
+                rand = randint(1,len(baj)-1)
                 return baj[rand]
