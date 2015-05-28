@@ -8,23 +8,22 @@ class Bantsults(object):
 
         def Bantjective(self):
                 baj = [
-                        "delusional",
+                        "the arch bishop of Banterbury",
                         "Banton dubec",
-                        "Bantomime",
-                        "Bantlepiece",
+                        "a Bantomime",
+                        "a Bantlepiece",
                         "Bantony Hopkins",
                         "Banterberry tales",
-                        "Bantagonist",
-                        "Banti-christ",
-                        "Bantelope",
-                        "Banti aging cream",
-                        "Bantidote",
-                        "Bantasy",
+                        "a Bantagonist",
+                        "the Banti-christ",
+                        "a Bantelope",
+                        "a user of Banti aging cream",
+                        "using Bantidote",
+                        "living in a Bantasy",
                         "Bantastic",
-                        "Bantennae",
-                        "Bantom of the opera",
-                        "Sweat bants",
-                        "Robantic" 
+                        "the Bantom of the opera",
+                        "wearing Sweat bants",
+                        "very Robantic" 
                 ]
                 rand = randint(1,len(baj)-1)
                 return baj[rand]
