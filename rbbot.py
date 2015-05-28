@@ -49,7 +49,7 @@ class RBbot(object):
         def messg(self,content,mode):
                 self.mode = mode
                 self.content = content
-                self.bantsult = bantsults.Bansults()
+                self.bantsult = bantsults.Bantsults()
 
 
                 if self.mode == 'c':
