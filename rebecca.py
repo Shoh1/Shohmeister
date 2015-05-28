@@ -62,9 +62,9 @@ while bot.connected == True:
                         else:
                                 cunts = cunt(text).lower()
                                 if cunts != "doctordalek":
-                                                bot.messg(cunt(text),"c")
+                                                bot.messg(cunt(text),"c","#crude")
                                 else:
-                                                bot.messg("Ur a virgin","g")
+                                                bot.messg("Ur a virgin","g","#crude")
                                 allowance -= 1.0
         elif: chan(text) == "#reddit-sysadmin
                 if text.find("linux") != -1 or text.find("LINUX") != -1:
@@ -75,12 +75,9 @@ while bot.connected == True:
                         if (allowance < 1.0):
                                 print "allowance under 1"
                         else:
-                                bot.messg("I think you meant GNU/Linux","g")
+                                bot.messg("I think you meant GNU/Linux","g","#reddit-sysadmin")
                         allowance -= 1.0
 
-
-
-if text.find("PRIVMSG #crude") != -1
 
         if text.find ( 'PING' ) != -1:
                 bot.messg(text.split()[1],"p")
