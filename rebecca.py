@@ -66,7 +66,7 @@ while bot.connected == True:
                                 else:
                                                 bot.messg("Ur a virgin","g","#crude")
                                 allowance -= 1.0
-        elif chan(text) == "#reddit-sysadmin:
+        elif chan(text) == "#reddit-sysadmin":
                 if text.find("linux") != -1 or text.find("LINUX") != -1:
                         last_check=current
                         allowance += time_passedS * (rate / per)
