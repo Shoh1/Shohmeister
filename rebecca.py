@@ -46,7 +46,7 @@ while bot.connected == True:
         
         if text.find(":.bantz") != -1 or text.find(":.BANTZ") != -1:
                 cunts = cunt(text).lower()
-                if cunts != "doctordalek"
+                if cunts != "doctordalek":
                                 bot.messg(cunt(text),"c")
                 else:
                                 bot.messg("Ur a virgin","g")
