@@ -46,18 +46,19 @@ class RBbot(object):
                 for i in xrange(0,len(self.l),self.n):
                         yield self.l[i:i+self.n]
 
-        def messg(self,content,mode):
+        def messg(self,content,mode,target):
                 self.mode = mode
                 self.content = content
                 self.bantsult = bantsults.Bantsults()
+                self.target = target
 
 
                 if self.mode == 'c':
-                        self.ircsock.send("PRIVMSG "+self.chan+" :"+ self.content + " is " + self.bantsult.Bantjective() + "\r\n")
+                        self.ircsock.send("PRIVMSG "+self.target+" :"+ self.content + " is " + self.bantsult.Bantjective() + "\r\n")
                 elif self.mode == 'p':
-                        self.ircsock.send( 'PONG ' + self.content + '\r\n' )
+                        self.ircsock.send( 'PONG ' + self.chan+ '\r\n' )
                 elif self.mode == 'g':
-                        self.ircsock.send("PRIVMSG "+self.chan+" :"+self.content.encode('utf8')+"\r\n")
+                        self.ircsock.send("PRIVMSG "+self.target+" :"+self.content.encode('utf8')+"\r\n")
 
 
 class Tweets(object):
