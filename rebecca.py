@@ -45,11 +45,19 @@ while bot.connected == True:
         print (text)
         
         if text.find(":.bantz") != -1 or text.find(":.BANTZ") != -1:
-                cunts = cunt(text).lower()
-                if cunts != "doctordalek":
-                                bot.messg(cunt(text),"c")
+                last_check=current
+                allowance += time_passedS * (rate / per)
+                if (allowance > rate):
+                        allowance = rate;
+                if (allowance < 1.0):
+                        print "allowance under 1"
                 else:
-                                bot.messg("Ur a virgin","g")
+                        cunts = cunt(text).lower()
+                        if cunts != "doctordalek":
+                                        bot.messg(cunt(text),"c")
+                        else:
+                                        bot.messg("Ur a virgin","g")
+                        allowance -= 1.0
 
         if text.find ( 'PING' ) != -1:
                 bot.messg(text.split()[1],"p")
