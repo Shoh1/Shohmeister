@@ -80,4 +80,4 @@ while bot.connected == True:
 
 
         if text.find ( 'PING' ) != -1:
-                bot.messg(text.split()[1],"p")
+                bot.messg(text.split()[1],"p","")
