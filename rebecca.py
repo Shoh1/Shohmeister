@@ -50,6 +50,10 @@ def cunt(text):
         t1=t[0]
         to = t1[1:t1.index('!')].strip()
         return to
+        
+def chan(text):
+        t = text.split()
+        return t[2]
 
 
 ### START
