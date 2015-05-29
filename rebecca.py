@@ -51,7 +51,7 @@ while bot.connected == True:
         print (text)
         
         if text.find ( 'PING' ) != -1:
-                if '#' not in chan(text):
+                if '#' not in text.lower:
                         bot.messg(text.split()[1],"p","")
         elif chan(text) == "#crude":
                 if text.lower().find(":.bantz") != -1:
@@ -78,9 +78,9 @@ while bot.connected == True:
                         else:
                                 cunts = cunt(text).lower()
                                 if cunts != "R_L_N" or "Sp00n" or "Stulander":
-                                        bot.messg(cunt(text) + " FANCY A CHEEKY NANDOS?? YEYEYEYEYEYEYEYYEYEYEYEYYEYEYEYEYEY EXTRA HOT ON MY DICK","g",chan(text))
+                                        bot.messg(cunt(text) + ": FANCY A CHEEKY NANDOS?? YEYEYEYEYEYEYEYYEYEYEYEYYEYEYEYEYEY EXTRA HOT ON MY DICK","g",chan(text))
                                 else:
-                                        bot.messg(cunt(text) + " fuck off you lemon and herb CUNT","g",chan(text))
+                                        bot.messg(cunt(text) + ": fuck off you lemon and herb CUNT","g",chan(text))
                         allowance -= 1.0
         elif chan(text) == "#reddit-sysadmin":
                 if text.lower().find("linux") != -1:
@@ -91,7 +91,7 @@ while bot.connected == True:
                         if (allowance < 1.0):
                                 print "allowance under 1"
                         else:
-                                bot.messg(cunt(text) + " I think you mean GNU/Linux","g","#reddit-sysadmin")
+                                bot.messg(cunt(text) + ": I think you mean GNU/Linux","g","#reddit-sysadmin")
                         allowance -= 1.0
                 if text.lower().find("unix") != -1:
                         last_check=current
@@ -101,5 +101,14 @@ while bot.connected == True:
                         if (allowance < 1.0):
                                 print "allowance under 1"
                         else:
-                                bot.messg(cunt(text) + " I think you mean OSx","g","#reddit-sysadmin")
+                                bot.messg(cunt(text) + ": I think you mean OSx","g","#reddit-sysadmin")
                         allowance -= 1.0
+                if text.lower().find("osx") != -1:
+                        last_check=current
+                        allowance += time_passedS * (rate / per)
+                        if (allowance > rate):
+                                allowance = rate;
+                        if (allowance < 1.0):
+                                print "allowance under 1"
+                        else:
+                                bot.messg(cunt(text) + ": OSx is unix for people who aren't virgins","g","#reddit-sysadmin")
