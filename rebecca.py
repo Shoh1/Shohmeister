@@ -76,15 +76,15 @@ while bot.connected == True:
                         cheekyallowance += time_passedS * (cheekyrate / cheekyper)
                         if (cheekyallowance > cheekyrate):
                                 cheekyallowance = cheekyrate;
-                        if (cheekyallowance < 60.0):
-                                print "cheekyallowance under 60"
+                        if (cheekyallowance < 1.0):
+                                print "cheekyallowance under 1"
                         else:
                                 cunts = cunt(text).lower()
                                 if cunts != "R_L_N" or "Sp00n" or "Stulander":
                                         bot.messg(cunt(text) + ": FANCY A CHEEKY NANDOS?? YEYEYEYEYEYEYEYYEYEYEYEYYEYEYEYEYEY EXTRA HOT ON MY DICK","g",chan(text))
                                 else:
                                         bot.messg(cunt(text) + ": fuck off you lemon and herb CUNT","g",chan(text))
-                                cheekyallowance -= 60.0
+                                cheekyallowance -= 1.0
         elif chan(text) == "#reddit-sysadmin":
                 if text.lower().find("linux") != -1 and 'gnu/linux' not in text.lower():
                         last_check=current
