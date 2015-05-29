@@ -41,6 +41,9 @@ def cunt(text):
 def chan(text):
         t = text.split()
         return t[2]
+def rand(int):
+        rand = rand.randint(1,2);
+        return rand
 
 
 
@@ -94,7 +97,7 @@ while bot.connected == True:
                         if (allowance < 1.0):
                                 print "allowance under 1"
                         else:
-                                rand = random.randint(1,2);
+                                rand(int);
                                 if rand == 1:
                                         bot.messg(cunt(text) + ": I think you mean GNU/Linux","g","#reddit-sysadmin")   
                                 elif rand == 2: 
