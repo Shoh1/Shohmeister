@@ -65,74 +65,75 @@ while bot.connected == True:
 
         text=bot.ircsock.recv(2048)
         print (text)
-        if text.find(" crudeiasdas") != -1:
-                bot.getNames(channel)
-        elif text.find("!jaden") != -1 or text.find("JADEN") != -1:
-                True
-        elif text.find("jaden") != -1 or text.find("JADEN") != -1:
-                try:
+        
+        if text.find ( 'PING' ) != -1:
+                if '#' not in text.lower():
+                        bot.messg(text.split()[1],"p","")
+                elif text.find(" crudeiasdas") != -1:
+                        bot.getNames(channel)
+                elif text.find("!jaden") != -1 or text.find("JADEN") != -1:
+                        True
+                elif text.find("jaden") != -1 or text.find("JADEN") != -1:
+                        try:
+                                if cunt(text).lower() != "shoh":
+                                        #bot.messg(tweetjs,"t")
+                                        gif = apiObject.getAPI("sad")
+                                        bot.messg(gif,"a","#crude")
+                        except ValueError:
+                                print("value error on cunt")
+                elif text.find("tell me more becky") != -1:
                         if cunt(text).lower() != "shoh":
-                                #bot.messg(tweetjs,"t")
-                                gif = apiObject.getAPI("sad")
-                                bot.messg(gif,"a","#crude")
-                except ValueError:
-                        print("value error on cunt")
-        if text.find("tell me more becky") != -1:
-                if cunt(text).lower() != "shoh":
-                        bot.messg(tweetrb,"t","#crude")
-        if text.find("rebecca tell me stuff") != -1:
-                if cunt(text).lower() != "shoh":
-                        bot.messg(tweetrb1,"t","#crude")
+                                bot.messg(tweetrb,"t","#crude")
+                elif text.find("rebecca tell me stuff") != -1:
+                        if cunt(text).lower() != "shoh":
+                                bot.messg(tweetrb1,"t","#crude")
 
-        if text.find("IS IT FRIDAY") != -1:
-                last_check=current
-                allowance += time_passedS * (rate / per)
-                if (allowance > rate):
-                        allowance = rate;
-                if (allowance < 1.0):
-                        print "allowance under 1"
-                else:
-                        cunts = cunt(text).lower()
-                        if cunts != "shoh" or cunts != "dong" or cunts != "dongerdong":
-                                bot.messg(datetime.datetime.now(),"YT","#crude")
-                        allowance -= 1.0
-
-        if text.find(":.yt ") != -1 or text.find(":.YT ") != -1:
-                last_check=current
-                allowance += time_passedS * (rate / per)
-                if (allowance > rate):
-                        allowance = rate;
-                if (allowance < 1.0):
-                        print "allowance under 1"
-                else:
-                        cunts = cunt(text).lower()
-                        if cunts == "shoh" or cunts == "dong" or cunts == "dongerdong" or cunts == "rebeccablack":
-                                bot.messg("yer a cunt harry","g","#crude")
+                elif text.find("IS IT FRIDAY") != -1:
+                        last_check=current
+                        allowance += time_passedS * (rate / per)
+                        if (allowance > rate):
+                                allowance = rate;
+                        if (allowance < 1.0):
+                                print "allowance under 1"
                         else:
-                                line = text[text.index(":.yt"):].split()
-                                searchterm = []
-                                searchterm = "+".join(line[1:]).strip()
-                                if searchterm:
-                                        urlytube = urlyt+searchterm
-                                        result = apiObject.getYT(urlytube)
-                                        tellthecunts = result["items"][0]["snippet"]["title"]+" by "+result["items"][0]["snippet"]["channelTitle"]+" -> https://www.youtube.com/watch?v="+result["items"][0]["id"]["videoId"]
-                                        bot.messg(tellthecunts,"g","#crude")
+                                cunts = cunt(text).lower()
+                                if cunts != "shoh" or cunts != "dong" or cunts != "dongerdong":
+                                        bot.messg(datetime.datetime.now(),"YT","#crude")
                                 allowance -= 1.0
 
-        if text.find("is it friday") != -1:
-                last_check=current
-                allowance += time_passedS * (rate / per)
-                if (allowance > rate):
-                        allowance = rate;
-                if (allowance < 1.0):
-                        print "allowance under 1"
-                else:
-                        cunts = cunt(text).lower()
-                        if cunts == "shoh" or cunts == "dong" or cunts == "dongerdong":
-                                bot.messg("yer a cunt harry","g","#crude")
+                elif text.find(":.yt ") != -1 or text.find(":.YT ") != -1:
+                        last_check=current
+                        allowance += time_passedS * (rate / per)
+                        if (allowance > rate):
+                                allowance = rate;
+                        if (allowance < 1.0):
+                                print "allowance under 1"
                         else:
-                                bot.messg(datetime.datetime.now(),"yt","#crude")
+                                cunts = cunt(text).lower()
+                                if cunts == "shoh" or cunts == "dong" or cunts == "dongerdong" or cunts == "rebeccablack":
+                                        bot.messg("yer a cunt harry","g","#crude")
+                                else:
+                                        line = text[text.index(":.yt"):].split()
+                                        searchterm = []
+                                        searchterm = "+".join(line[1:]).strip()
+                                        if searchterm:
+                                                urlytube = urlyt+searchterm
+                                                result = apiObject.getYT(urlytube)
+                                                tellthecunts = result["items"][0]["snippet"]["title"]+" by "+result["items"][0]["snippet"]["channelTitle"]+" -> https://www.youtube.com/watch?v="+result["items"][0]["id"]["videoId"]
+                                                bot.messg(tellthecunts,"g","#crude")
+                                        allowance -= 1.0
 
-                        allowance -= 1.0
-        if text.find ( 'PING' ) != -1:
-                bot.messg(text.split()[1],"p","")
+                elif text.find("is it friday") != -1:
+                        last_check=current
+                        allowance += time_passedS * (rate / per)
+                        if (allowance > rate):
+                                allowance = rate;
+                        if (allowance < 1.0):
+                                print "allowance under 1"
+                        else:
+                                cunts = cunt(text).lower()
+                                if cunts == "shoh" or cunts == "dong" or cunts == "dongerdong":
+                                        bot.messg("yer a cunt harry","g","#crude")
+                                else:
+                                        bot.messg(datetime.datetime.now(),"yt","#crude")
+                                allowance -= 1.0
