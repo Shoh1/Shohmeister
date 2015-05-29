@@ -51,8 +51,11 @@ while bot.connected == True:
         text=bot.ircsock.recv(2048)
         print (text)
         
-        if chan(text) == "#crude":
-                if text.find(":.bantz".lower()) != -1:
+        if text.find ( 'PING' ) != -1:
+                if '#' not in chan(text):
+                bot.messg(text.split()[1],"p","")
+        elif chan(text) == "#crude":
+                if text.lower().find(":.bantz") != -1:
                         last_check=current
                         allowance += time_passedS * (rate / per)
                         if (allowance > rate):
@@ -66,8 +69,22 @@ while bot.connected == True:
                                 else:
                                                 bot.messg("Ur a virgin","g","#crude")
                                 allowance -= 1.0
+                elif text.lower().fine("nandos") != -1:
+                        last_check=current
+                        allowance += time_passedS * (rate / per)
+                        if (allowance > rate):
+                                allowance = rate;
+                        if (allowance < 1.0):
+                                print "allowance under 1"
+                        else:
+                                cunts = cunt(text).lower()
+                                if cunts != "R_L_N" or "Sp00n" or "Stulander":
+                                        bot.messg(cunt(text) + " FANCY A CHEEKY NANDOS?? YEYEYEYEYEYEYEYYEYEYEYEYYEYEYEYEYEY EXTRA HOT ON MY DICK","g",chan(text))
+                                else:
+                                        bot.messg(cunt(text) + " fuck off you lemon and herb CUNT","g",chan(text))
+                        allowance -= 1.0
         elif chan(text) == "#reddit-sysadmin":
-                if text.find("linux".lower()) != -1:
+                if text.lower().find("linux") != -1:
                         last_check=current
                         allowance += time_passedS * (rate / per)
                         if (allowance > rate):
@@ -77,7 +94,7 @@ while bot.connected == True:
                         else:
                                 bot.messg(cunt(text) + " I think you mean GNU/Linux","g","#reddit-sysadmin")
                         allowance -= 1.0
-                if text.find("unix".lower()) != -1:
+                if text.lower().find("unix") != -1:
                         last_check=current
                         allowance += time_passedS * (rate / per)
                         if (allowance > rate):
@@ -87,7 +104,3 @@ while bot.connected == True:
                         else:
                                 bot.messg(cunt(text) + " I think you mean OSx","g","#reddit-sysadmin")
                         allowance -= 1.0
-
-
-        if text.find ( 'PING' ) != -1:
-                bot.messg(text.split()[1],"p","")
