@@ -68,7 +68,7 @@ while bot.connected == True:
                                 else:
                                                 bot.messg("Ur a virgin","g","#crude")
                                 allowance -= 1.0
-                elif text.lower().fine("nandos") != -1:
+                elif text.lower().find("nandos") != -1:
                         last_check=current
                         allowance += time_passedS * (rate / per)
                         if (allowance > rate):
