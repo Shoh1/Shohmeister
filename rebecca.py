@@ -51,7 +51,7 @@ while bot.connected == True:
         print (text)
         
         if text.find ( 'PING' ) != -1:
-                if '#' not in text.lower:
+                if '#' not in text.lower():
                         bot.messg(text.split()[1],"p","")
         elif chan(text) == "#crude":
                 if text.lower().find(":.bantz") != -1:
