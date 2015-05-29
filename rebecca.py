@@ -94,7 +94,11 @@ while bot.connected == True:
                         if (allowance < 1.0):
                                 print "allowance under 1"
                         else:
-                                bot.messg(cunt(text) + ": I think you mean GNU/Linux","g","#reddit-sysadmin")
+                                rand = random.randint(1,2);
+                                if rand == 1:
+                                        bot.messg(cunt(text) + ": I think you mean GNU/Linux","g","#reddit-sysadmin")   
+                                elif rand == 2: 
+                                        bot.messg(cunt(text) + ": Linux is just OSx for virgins","g","#reddit-sysadmin")
                         allowance -= 1.0
                 elif text.lower().find("unix") != -1:
                         last_check=current
@@ -114,4 +118,5 @@ while bot.connected == True:
                         if (allowance < 1.0):
                                 print "allowance under 1"
                         else:
-                                bot.messg(cunt(text) + ": OSx is unix for people who aren't virgins","g","#reddit-sysadmin")
+                                bot.messg(cunt(text) + ": OSx is unix for people who get laid","g","#reddit-sysadmin")
+                        allowance -= 1.0
