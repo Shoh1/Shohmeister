@@ -80,7 +80,7 @@ while bot.connected == True:
                                 print "cheekyallowance under 1"
                         else:
                                 cunts = cunt(text).lower()
-                                if cunts != "R_L_N" or "Sp00n" or "Stulander":
+                                if cunts != "r_l_n" or "sp00n" or "stulander":
                                         bot.messg(cunt(text) + ": FANCY A CHEEKY NANDOS?? YEYEYEYEYEYEYEYYEYEYEYEYYEYEYEYEYEY EXTRA HOT ON MY DICK","g",chan(text))
                                 else:
                                         bot.messg(cunt(text) + ": fuck off you lemon and herb CUNT","g",chan(text))
