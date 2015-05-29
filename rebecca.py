@@ -21,7 +21,6 @@ rate = 1.0
 per = 5.0
 allowance = rate;
 last_check=time.time()
-apiObject = rbbot.apis()
 
 
 ### SET NICK AND JOIN CHANNEL
