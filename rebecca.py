@@ -6,6 +6,7 @@ from pprint import pprint
 import datetime
 import signal
 import time
+from random import randint
 
 ### IRC INFO
 server = "irc.freenode.net"
@@ -41,12 +42,7 @@ def cunt(text):
 def chan(text):
         t = text.split()
         return t[2]
-def rand(int):
-        rand = rand.randint(1,2);
-        return rand
-
-
-
+        
 ### START
 while bot.connected == True:
         signal.signal(signal.SIGINT, bot.exitGracefully)
@@ -97,7 +93,7 @@ while bot.connected == True:
                         if (allowance < 1.0):
                                 print "allowance under 1"
                         else:
-                                rand(int);
+                                rand = randint(1,2)
                                 if rand == 1:
                                         bot.messg(cunt(text) + ": I think you mean GNU/Linux","g","#reddit-sysadmin")   
                                 elif rand == 2: 
