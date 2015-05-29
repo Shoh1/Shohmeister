@@ -19,6 +19,9 @@ password=""
 ### RATE LIMITING
 rate = 1.0
 per = 5.0
+cheekyrate = 1.0
+cheekyper = 60.0
+cheekyallowance = cheekyrate;
 allowance = rate;
 last_check=time.time()
 
@@ -70,18 +73,18 @@ while bot.connected == True:
                                 allowance -= 1.0
         elif text.lower().find("nandos") != -1:
                 last_check=current
-                allowance += time_passedS * (rate / (per + 50.0))
-                if (allowance > rate):
-                        allowance = rate;
-                if (allowance < 1.0):
-                        print "allowance under 1"
+                cheekyallowance += time_passedS * (cheekyrate / cheekyper)
+                if (cheekyallowance > cheekyrate):
+                        cheekyallowance = cheekyrate;
+                if (cheekyallowance < 60.0):
+                        print "cheekyallowance under 60"
                 else:
                         cunts = cunt(text).lower()
                         if cunts != "R_L_N" or "Sp00n" or "Stulander":
                                 bot.messg(cunt(text) + ": FANCY A CHEEKY NANDOS?? YEYEYEYEYEYEYEYYEYEYEYEYYEYEYEYEYEY EXTRA HOT ON MY DICK","g",chan(text))
                         else:
                                 bot.messg(cunt(text) + ": fuck off you lemon and herb CUNT","g",chan(text))
-                        allowance -= 1.0
+                        cheekyallowance -= 60.0
         elif chan(text) == "#reddit-sysadmin":
                 if text.lower().find("linux") != -1 and 'gnu/linux' not in text.lower():
                         last_check=current
